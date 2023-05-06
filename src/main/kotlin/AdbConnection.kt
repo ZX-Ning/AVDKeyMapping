@@ -11,7 +11,6 @@ class AdbConnection private constructor (adbCmd: List<String>){
         try {
             val pb = ProcessBuilder(adbCmd)
             pb.redirectErrorStream(true)
-            pb.redirectOutput(File("adb_out.txt"))
             process = pb.start()
             Thread.sleep(500)
             if (!process.isAlive){
