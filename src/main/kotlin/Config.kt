@@ -3,7 +3,7 @@ class Config{
         val adbCmd = listOf("adb", "-e", "shell")
         val keymaps: Map<String,AdbInput> = mapOf(
             Pair("SPACE",Point(1225.0,600.0)),
-            Pair("TAB",Point(800.0,360.0)),
+            Pair("TAB",Point(870.0,320.0)),
             Pair("R",Point(1650.0,80.0)),
             Pair("E",Point(1800.0,80.0)),
             Pair("W",Point(1840.0,990.0)),
