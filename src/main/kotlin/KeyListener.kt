@@ -19,6 +19,7 @@ class KeyListener private constructor(private val keyEventsList: ArrayBlockingQu
     private val NativeKeyEvent.keyText: String get() = NativeKeyEvent.getKeyText(this.keyCode)
     private val keyPressedSet = HashSet<String>()
     override fun nativeKeyPressed(keyEvent: NativeKeyEvent) {
+        println("time key listened : ${System.currentTimeMillis()}")
         val key = keyEvent.keyText.uppercase()
         if(!keyPressedSet.contains(key)){
             keyPressedSet.add(key)

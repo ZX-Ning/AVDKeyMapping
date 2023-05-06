@@ -22,7 +22,7 @@ class AdbConnection private constructor (adbCmd: List<String>){
         }
     }
     private val input = PrintWriter(OutputStreamWriter(process.outputStream))
-    private fun sendCmd(cmd: String) = input.println(cmd).also { input.flush() }
+    private fun sendCmd(cmd: String) = input.println(cmd).also { input.flush() }.also { println("time adb cmd send : ${System.currentTimeMillis()}") }
     fun touch(p: Point) = sendCmd("input tap ${p.x} ${p.y}")
     fun keyEvent(num :Int) = sendCmd("input keyevent $num")
 }
