@@ -1,4 +1,3 @@
-//Create by Ning Zhenxiang in May5
 import java.util.concurrent.ArrayBlockingQueue
 import kotlin.system.exitProcess
 
