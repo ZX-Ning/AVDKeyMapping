@@ -1,10 +1,9 @@
-import java.io.File
 import java.io.OutputStreamWriter
 import java.io.PrintWriter
 import java.net.Socket
 import java.util.concurrent.TimeUnit
 
-class MonkeyConnection private constructor(private val adbPath: String) {
+class MonkeyConnection private constructor(adbPath: String) {
     companion object {
         const val PORT = 1080
         private var instance: MonkeyConnection? = null
@@ -20,8 +19,6 @@ class MonkeyConnection private constructor(private val adbPath: String) {
         Runtime.getRuntime().exec("$adbPath forward tcp:$PORT tcp:$PORT")
             .waitFor(1000,TimeUnit.MILLISECONDS)
         val process = ProcessBuilder(adbPath,"shell","monkey","--port", PORT.toString())
-            .redirectErrorStream(true)
-            .redirectOutput(File("out.txt"))
             .start()
             .also { it.waitFor(300, TimeUnit.MILLISECONDS) }
         if (!process.isAlive){
