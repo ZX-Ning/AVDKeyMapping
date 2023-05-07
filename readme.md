@@ -1,7 +1,7 @@
 ## AVDKeyMapping Tool
 
 
-A tool for android gaming on emulators without builtin key mapping support like AVD(Android Virtual Device), the emulator come with Android Studio. Using adb.
+A tool for android gaming on emulators without builtin key mapping support like AVD (Android Virtual Device, the emulator come with Android Studio.)
 
 This program is ***uncompleted***.
 
