@@ -1,16 +1,17 @@
 class Config{
     companion object{
-        val adbCmd = listOf("adb", "-e", "shell")
+        const val adbPath = "adb"
         val keymaps: Map<String,AdbInput> = mapOf(
-            Pair("SPACE",Point(1225.0,600.0)),
-            Pair("TAB",Point(870.0,320.0)),
-            Pair("R",Point(1650.0,80.0)),
-            Pair("E",Point(1800.0,80.0)),
-            Pair("W",Point(1840.0,990.0)),
-            Pair("Q",AdbKeyEvent(4))
+            Pair("SPACE",AdbInput.Point(1225,600)),
+            Pair("TAB",AdbInput.Point(870,320)),
+            Pair("R",AdbInput.Point(1650,80)),
+            Pair("E",AdbInput.Point(1800,80)),
+            Pair("W",AdbInput.Point(1840,990)),
+            Pair("Q", AdbInput.KeyPress("BACK"))
         )
     }
 }
-interface AdbInput
-data class AdbKeyEvent(val num:Int):AdbInput
-data class Point(val x :Double, val y :Double):AdbInput
+sealed interface AdbInput{
+    data class KeyPress(val key :String):AdbInput
+    data class Point(val x :Int, val y :Int):AdbInput
+}

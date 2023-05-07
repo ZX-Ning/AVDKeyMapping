@@ -2,12 +2,14 @@ import java.util.concurrent.ArrayBlockingQueue
 import kotlin.system.exitProcess
 
 private val keyEvents = ArrayBlockingQueue<String>(30)
-private lateinit var adb: AdbConnection
+//private lateinit var adb: AdbConnection
+private lateinit var monkey: MonkeyConnection
 fun main(){
-    println("hello world!")
+    println("Hello World!\nAVDTool")
     KeyListener.initialKeyListener(keyEvents)
     try{
-        adb = AdbConnection.initConnection(Config.adbCmd)
+//        adb = AdbConnection.initConnection(Config.adbPath)
+        monkey = MonkeyConnection.initConnection(Config.adbPath)
         println("adb connected")
         mainEventLoop()
     }
@@ -29,12 +31,12 @@ fun mainEventLoop(){
 
 fun onKeyPressed(key: String){
     val input = Config.keymaps[key]!!
-    if (input is Point){
+    if (input is AdbInput.Point){
        println("touching $input")
-        adb.touch(input)
+       monkey.touch(input)
     }
-    else if (input is AdbKeyEvent){
-        println("sending key event ${input.num}")
-        adb.keyEvent(input.num)
+    else if (input is AdbInput.KeyPress){
+        println("sending key ${input.key}")
+        monkey.sendKey(input)
     }
 }

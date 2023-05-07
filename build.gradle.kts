@@ -5,8 +5,9 @@ plugins {
 
 repositories {
     mavenCentral()
+   // maven (url = "https://maven.google.com/")
 }
-
+val androidToolsVersion = "25.3.0"
 dependencies {
     implementation("com.github.kwhat:jnativehook:2.2.2")
 }
