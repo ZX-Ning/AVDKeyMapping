@@ -2,13 +2,11 @@ import java.util.concurrent.ArrayBlockingQueue
 import kotlin.system.exitProcess
 
 private val keyEvents = ArrayBlockingQueue<String>(30)
-//private lateinit var adb: AdbConnection
 private lateinit var monkey: MonkeyConnection
 fun main(){
     println("Hello World!\nAVDTool")
     KeyListener.initialKeyListener(keyEvents)
     try{
-//        adb = AdbConnection.initConnection(Config.adbPath)
         monkey = MonkeyConnection.initConnection(Config.adbPath)
         println("adb connected")
         mainEventLoop()
